@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animal Farming Guides - Project</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind to use 'Inter' font -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Custom styles for a cleaner look */
+      body {
+        background-color: #f7f9fb; /* Light background */
+        font-family: "Inter", sans-serif;
+      }
+      .card {
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen">
+    <div id="app" class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+      <!-- Header -->
+      <header class="bg-white shadow-lg rounded-xl mb-8 p-4">
+        <h1 class="text-3xl font-bold text-gray-800 tracking-tight">
+          Sustainable Animal Farming Hub
+        </h1>
+        <p class="mt-2 text-gray-600">
+          Guides, Requirements, and Environmental Suitability Analysis
+        </p>
+      </header>
+
+      <!-- Main Content Grid -->
+      <main class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <!-- Sidebar / Filtering & Navigation -->
+        <aside class="lg:col-span-1 bg-white p-6 rounded-xl shadow-md h-fit">
+          <h2 class="text-xl font-semibold mb-4 text-gray-700">
+            Animal Categories
+          </h2>
+          <nav>
+            <ul id="category-list" class="space-y-2">
+              <!-- Categories will be populated by JavaScript -->
+            </ul>
+          </nav>
+
+          <div class="mt-8 pt-6 border-t border-gray-200">
+            <h3 class="text-lg font-medium text-gray-700 mb-2">
+              Filter by Environment
+            </h3>
+            <select
+              id="environment-filter"
+              class="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="all">All Environments</option>
+              <option value="tropical">Tropical Climates</option>
+              <option value="temperate">Temperate Regions</option>
+              <option value="arid">Arid/Dry Zones</option>
+              <option value="mountain">Mountainous Areas</option>
+            </select>
+          </div>
+        </aside>
+
+        <!-- Animal Guides List -->
+        <section class="lg:col-span-3">
+          <h2
+            class="text-2xl font-bold mb-4 text-gray-800"
+            id="current-category-title"
+          >
+            All Farming Guides
+          </h2>
+          <div
+            id="guides-container"
+            class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
+          >
+            <!-- Guide cards will be populated by JavaScript -->
+          </div>
+        </section>
+      </main>
+
+      <!-- Modal for Detailed Guide View -->
+      <div
+        id="guide-modal"
+        class="fixed inset-0 bg-gray-900 bg-opacity-75 hidden items-center justify-center p-4 z-50"
+      >
+        <div
+          class="bg-white rounded-xl shadow-2xl max-w-4xl w-full p-6 max-h-[90vh] overflow-y-auto"
+        >
+          <div class="flex justify-between items-start mb-4 border-b pb-3">
+            <h3 id="modal-title" class="text-3xl font-bold text-gray-800"></h3>
+            <button
+              id="close-modal"
+              class="text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <svg
+                class="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div id="modal-content" class="space-y-6 text-gray-700">
+            <!-- Detailed content (Requirements, Environment, Guide steps) goes here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+      const API_KEY = ""; // Placeholder for potential future API use
+
+      // Mock Data Structure
+      const farmingData = [
+        {
+          id: 1,
+          name: "Broiler Chicken Farming",
+          category: "Poultry",
+          environment: "temperate",
+          short_description:
+            "A comprehensive guide to raising chickens for meat production.",
+          requirements:
+            "Adequate shelter (coop), balanced feed, constant clean water supply, ventilation.",
+          environmental_suitability:
+            "Thrives in temperate conditions but needs temperature control in extreme heat or cold. Requires minimal land area.",
+          guide_steps: [
+            "Prepare the housing with clean bedding and feeders.",
+            "Source healthy day-old chicks.",
+            "Maintain brooding temperature (around 95°F initially) and reduce gradually.",
+            "Provide 24/7 access to starter, grower, and finisher feed.",
+            "Ensure daily health checks and biosecurity measures.",
+          ],
+        },
+        {
+          id: 2,
+          name: "Dairy Cow Management",
+          category: "Cattle",
+          environment: "temperate",
+          short_description:
+            "Best practices for milking cows and herd health management.",
+          requirements:
+            "Large pasture access, milking parlour, high-quality forage and silage, veterinary support, reliable water source.",
+          environmental_suitability:
+            "Ideal for temperate zones with consistent rainfall for pasture growth. Requires significant space.",
+          guide_steps: [
+            "Establish rotational grazing schedule.",
+            "Implement a consistent milking routine (twice daily).",
+            "Monitor for signs of mastitis and other common illnesses.",
+            "Ensure proper nutrition for peak lactation.",
+            "Manage waste (manure) responsibly to prevent water pollution.",
+          ],
+        },
+        {
+          id: 3,
+          name: "Tilapia Aquaculture",
+          category: "Fish",
+          environment: "tropical",
+          short_description:
+            "Setting up and managing a profitable Tilapia fish pond.",
+          requirements:
+            "Pond or tank system, reliable water source, aeration equipment, specific high-protein feed.",
+          environmental_suitability:
+            "Requires warm water (70-85°F). Highly suitable for tropical and subtropical climates.",
+          guide_steps: [
+            "Design and prepare the pond/tank (depth, lining).",
+            "Stock fingerlings at an appropriate density.",
+            "Monitor water quality daily (pH, dissolved oxygen, temperature).",
+            "Feed regularly, adjusting amount based on biomass.",
+            "Harvest when fish reach market size (typically 6-9 months).",
+          ],
+        },
+        {
+          id: 4,
+          name: "Goat Rearing in Arid Lands",
+          category: "Small Ruminants",
+          environment: "arid",
+          short_description:
+            "Hardy goat farming techniques for dry and resource-scarce regions.",
+          requirements:
+            "Drought-resistant fencing, supplemental feed (browse), mineral licks, adequate shade structure.",
+          environmental_suitability:
+            "Goats are highly adaptable, making them excellent choices for arid and semi-arid environments. They tolerate sparse vegetation.",
+          guide_steps: [
+            "Select local, hardy breeds (e.g., Boer or local landraces).",
+            "Use rotational grazing to prevent overgrazing of sparse land.",
+            "Provide access to clean water, even if infrequent.",
+            "Shear or de-fleece seasonally if required.",
+            "Implement vaccination schedule for common diseases.",
+          ],
+        },
+      ];
+
+      // Global state for filtering
+      let currentCategory = "all";
+      let currentEnvironment = "all";
+
+      // DOM elements
+      const guidesContainer = document.getElementById("guides-container");
+      const categoryList = document.getElementById("category-list");
+      const environmentFilter = document.getElementById("environment-filter");
+      const currentCategoryTitle = document.getElementById(
+        "current-category-title"
+      );
+      const guideModal = document.getElementById("guide-modal");
+      const modalTitle = document.getElementById("modal-title");
+      const modalContent = document.getElementById("modal-content");
+      const closeModalButton = document.getElementById("close-modal");
+
+      // --- Utility Functions ---
+
+      /**
+       * Renders the data as interactive cards in the main section.
+       * @param {Array} data - The filtered array of farming guides.
+       */
+      function renderGuides(data) {
+        guidesContainer.innerHTML = "";
+        if (data.length === 0) {
+          guidesContainer.innerHTML =
+            '<p class="text-gray-500 col-span-full">No guides found matching the selected criteria.</p>';
+          return;
+        }
+
+        data.forEach((guide) => {
+          const card = document.createElement("div");
+          card.className =
+            "card bg-white p-6 rounded-xl shadow-lg border border-gray-100 cursor-pointer hover:border-blue-300";
+          card.dataset.id = guide.id;
+
+          let envColor = "";
+          switch (guide.environment) {
+            case "tropical":
+              envColor = "bg-green-100 text-green-700";
+              break;
+            case "temperate":
+              envColor = "bg-blue-100 text-blue-700";
+              break;
+            case "arid":
+              envColor = "bg-yellow-100 text-yellow-700";
+              break;
+            case "mountain":
+              envColor = "bg-gray-100 text-gray-700";
+              break;
+            default:
+              envColor = "bg-indigo-100 text-indigo-700";
+          }
+
+          card.innerHTML = `
+                    <span class="text-sm font-medium ${envColor} px-3 py-1 rounded-full">${
+            guide.category
+          } / ${
+            guide.environment.charAt(0).toUpperCase() +
+            guide.environment.slice(1)
+          }</span>
+                    <h3 class="text-xl font-bold mt-2 text-gray-800">${
+                      guide.name
+                    }</h3>
+                    <p class="mt-2 text-gray-500 line-clamp-3">${
+                      guide.short_description
+                    }</p>
+                    <button class="mt-4 text-sm font-semibold text-blue-600 hover:text-blue-800 flex items-center">
+                        View Full Guide 
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
+                `;
+
+          card.addEventListener("click", () => showGuideDetail(guide.id));
+          guidesContainer.appendChild(card);
+        });
+      }
+
+      /**
+       * Applies the current filters and updates the guide list.
+       */
+      function filterAndRender() {
+        let filteredData = farmingData;
+
+        // 1. Filter by Category
+        if (currentCategory !== "all") {
+          filteredData = filteredData.filter(
+            (guide) => guide.category === currentCategory
+          );
+          currentCategoryTitle.textContent = `${currentCategory} Farming Guides`;
+        } else {
+          currentCategoryTitle.textContent = "All Farming Guides";
+        }
+
+        // 2. Filter by Environment
+        if (currentEnvironment !== "all") {
+          filteredData = filteredData.filter(
+            (guide) => guide.environment === currentEnvironment
+          );
+        }
+
+        renderGuides(filteredData);
+      }
+
+      /**
+       * Populates the sidebar with unique categories and sets up listeners.
+       */
+      function setupCategories() {
+        const categories = [
+          "all",
+          ...new Set(farmingData.map((guide) => guide.category)),
+        ];
+
+        categoryList.innerHTML = categories
+          .map((cat) => {
+            const displayName = cat.charAt(0).toUpperCase() + cat.slice(1);
+            return `
+                    <li>
+                        <button data-category="${cat}" class="category-btn text-left w-full p-2 rounded-lg transition-colors 
+                            ${
+                              cat === currentCategory
+                                ? "bg-blue-600 text-white font-semibold shadow-md"
+                                : "text-gray-600 hover:bg-gray-100"
+                            }">
+                            ${displayName}
+                        </button>
+                    </li>
+                `;
+          })
+          .join("");
+
+        document.querySelectorAll(".category-btn").forEach((button) => {
+          button.addEventListener("click", (e) => {
+            // Update state and re-render the category buttons
+            currentCategory = e.currentTarget.dataset.category;
+            setupCategories();
+            filterAndRender();
+          });
+        });
+      }
+
+      /**
+       * Shows the detailed information for a selected guide in a modal.
+       * @param {number} id - The ID of the guide to display.
+       */
+      function showGuideDetail(id) {
+        const guide = farmingData.find((g) => g.id === id);
+        if (!guide) return;
+
+        modalTitle.textContent = guide.name;
+
+        // Format the guide steps as a list
+        const stepsHtml = guide.guide_steps
+          .map(
+            (step, index) =>
+              `<li class="flex items-start">
+                    <span class="flex-shrink-0 mr-3 text-lg font-bold text-blue-600">${
+                      index + 1
+                    }.</span> 
+                    <span class="text-gray-700">${step}</span>
+                </li>`
+          )
+          .join("");
+
+        modalContent.innerHTML = `
+                <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <p class="font-semibold text-gray-700">${
+                      guide.short_description
+                    }</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-xl font-semibold text-gray-800 mb-3 border-b pb-1">Key Requirements</h4>
+                        <p class="text-gray-600">${guide.requirements}</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold text-gray-800 mb-3 border-b pb-1">Environmental Suitability</h4>
+                        <p class="text-gray-600">
+                            <span class="font-medium text-blue-600">${guide.environment.toUpperCase()}:</span> 
+                            ${guide.environmental_suitability}
+                        </p>
+                    </div>
+                </div>
+                
+                <h4 class="text-xl font-semibold text-gray-800 mb-3 border-b pb-1 pt-4">Step-by-Step Guide</h4>
+                <ol class="space-y-3 list-none p-0">${stepsHtml}</ol>
+            `;
+
+        guideModal.classList.remove("hidden");
+        guideModal.classList.add("flex");
+      }
+
+      /**
+       * Hides the detail modal.
+       */
+      function hideGuideDetail() {
+        guideModal.classList.add("hidden");
+        guideModal.classList.remove("flex");
+      }
+
+      // --- Event Listeners and Initialization ---
+
+      closeModalButton.addEventListener("click", hideGuideDetail);
+
+      // Close modal when clicking outside of it
+      guideModal.addEventListener("click", (e) => {
+        if (e.target === guideModal) {
+          hideGuideDetail();
+        }
+      });
+
+      // Environment filter listener
+      environmentFilter.addEventListener("change", (e) => {
+        currentEnvironment = e.target.value;
+        filterAndRender();
+      });
+
+      // Initial setup on load
+      window.onload = function () {
+        // Log for debugging if Firebase was used (not used here, but good practice)
+        // if (typeof setLogLevel === 'function') setLogLevel('Debug');
+
+        setupCategories();
+        filterAndRender();
+      };
+    </script>
+  </body>
+</html>

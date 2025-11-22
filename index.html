@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - AgriSense Farming Hub</title>
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary-green': '#10B981', // Emerald 500
+                        'accent-blue': '#3B82F6',   // Blue 500
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 antialiased">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Brand -->
+                <a href="index.html" class="flex items-center space-x-2 text-2xl font-extrabold text-primary-green transition-colors hover:text-green-700">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.477 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.477-3-9s1.343-9 3-9m-9 9h.01"></path></svg>
+                    <span>AgriSense</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="index.html" class="text-primary-green border-b-2 border-primary-green px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="categories.html" class="text-gray-500 hover:text-primary-green hover:border-b-2 hover:border-primary-green px-3 py-2 text-sm font-medium">Guides</a>
+                    <a href="about.html" class="text-gray-500 hover:text-primary-green hover:border-b-2 hover:border-primary-green px-3 py-2 text-sm font-medium">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+        
+        <!-- 1. Hero Section -->
+        <section class="py-20 md:py-32 bg-primary-green rounded-3xl shadow-2xl mb-12 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10 bg-cover bg-center" style="background-image: url('https://placehold.co/1200x500/000000/FFFFFF?text=FARM+BACKGROUND')"></div>
+            <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight">
+                    Future-Proof Your Farming
+                </h1>
+                <p class="mt-6 text-xl text-green-200 max-w-2xl mx-auto">
+                    Comprehensive guides covering requirements, environmental suitability, and best practices for every animal farming category.
+                </p>
+                <a href="categories.html" class="mt-10 inline-block bg-white text-primary-green hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
+                    Explore Guides Now &rarr;
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. What We Cover Section (Cards) -->
+        <section class="py-12">
+            <h2 class="text-4xl font-bold text-gray-800 text-center mb-12">Focused on the Critical Questions</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1: What is the Requirement? -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-accent-blue transition duration-300 hover:shadow-xl">
+                    <div class="text-4xl text-accent-blue mb-3">❓</div>
+                    <h3 class="text-2xl font-semibold text-gray-800">What is Required?</h3>
+                    <p class="mt-2 text-gray-600">Detailed breakdown of feed, housing, equipment, and labor requirements specific to the animal.</p>
+                </div>
+                <!-- Card 2: Where to Farm? -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-primary-green transition duration-300 hover:shadow-xl">
+                    <div class="text-4xl text-primary-green mb-3">🌍</div>
+                    <h3 class="text-2xl font-semibold text-gray-800">Where to Farm?</h3>
+                    <p class="mt-2 text-gray-600">Analysis of environmental suitability: climate zones (Arid, Tropical, Temperate), land type, and water access.</p>
+                </div>
+                <!-- Card 3: Why This Animal? -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-yellow-500 transition duration-300 hover:shadow-xl">
+                    <div class="text-4xl text-yellow-600 mb-3">🌱</div>
+                    <h3 class="text-2xl font-semibold text-gray-800">Why This Animal?</h3>
+                    <p class="mt-2 text-gray-600">Understanding market potential, resilience, and sustainability benefits for each choice.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 3. Featured Guide Section -->
+        <section class="mt-16 bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2">
+                    <span class="text-sm font-semibold text-primary-green uppercase tracking-wider">Featured Guide</span>
+                    <h2 class="text-3xl font-bold text-gray-800 mt-2">The Resilience of Goat Farming in Arid Zones</h2>
+                    <p class="mt-4 text-lg text-gray-600">
+                        Goats are often the best choice for resource-scarce environments. Our guide details
+                        the specific management techniques, including browse utilization, water conservation,
+                        and optimal local breeds for dry climates.
+                    </p>
+                    <a href="goat-detail.html" class="mt-6 inline-block bg-accent-blue text-white hover:bg-blue-600 font-semibold py-3 px-6 rounded-full transition duration-300">
+                        Read Full Goat Guide &rarr;
+                    </a>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://placehold.co/400x250/10B981/FFFFFF?text=GOAT+FARMING" alt="Goat Farming" class="rounded-xl shadow-lg w-full h-auto object-cover">
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-12 py-8 bg-gray-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 AgriSense Project. Built by SDE Aspirant.</p>
+            <div class="mt-4 space-x-4 text-sm">
+                <a href="about.html" class="hover:text-primary-green transition-colors">About Us</a>
+                <a href="categories.html" class="hover:text-primary-green transition-colors">View All Guides</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

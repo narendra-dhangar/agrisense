@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broiler Chicken Farming Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary-green': '#10B981',
+                        'accent-blue': '#3B82F6',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 antialiased">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Brand -->
+                <a href="index.html" class="flex items-center space-x-2 text-2xl font-extrabold text-primary-green transition-colors hover:text-green-700">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.477 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.477-3-9s1.343-9 3-9m-9 9h.01"></path></svg>
+                    <span>AgriSense</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="index.html" class="text-gray-500 hover:text-primary-green hover:border-b-2 hover:border-primary-green px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="categories.html" class="text-primary-green border-b-2 border-primary-green px-3 py-2 text-sm font-medium">Guides</a>
+                    <a href="about.html" class="text-gray-500 hover:text-primary-green hover:border-b-2 hover:border-primary-green px-3 py-2 text-sm font-medium">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+
+        <a href="categories.html" class="text-accent-blue hover:text-blue-700 mb-6 flex items-center transition-colors">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Back to Categories
+        </a>
+
+        <div class="bg-white p-6 md:p-10 rounded-2xl shadow-2xl border-t-8 border-primary-green">
+            <div class="flex items-center space-x-4 mb-4">
+                <span class="text-6xl">🐓</span>
+                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+                    Broiler Chicken Farming
+                </h1>
+            </div>
+            <p class="text-lg text-primary-green font-semibold">Category: Poultry | Output: Meat Production</p>
+            <p class="mt-4 text-xl text-gray-600 border-b pb-4">Modern, high-yield methods for commercial chicken meat production in controlled environments.</p>
+
+            <!-- Key Information Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
+                
+                <!-- Card 1: Requirements -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-inner border-l-4 border-accent-blue">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">🛠️ Key Requirements</h3>
+                    <ul class="text-gray-600 list-disc pl-5 space-y-1">
+                        <li>Climate-controlled house (Brooder).</li>
+                        <li>Automated feeders and water nipples.</li>
+                        <li>High-quality starter and finisher feed.</li>
+                        <li>Vaccination protocol and biosecurity measures.</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: Environmental Suitability -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-inner border-l-4 border-primary-green">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">🌍 Environmental Suitability</h3>
+                    <p class="text-gray-600">
+                        **Controlled/Temperate:** Chickens require consistent temperature (around 90°F dropping gradually). Not suitable for extreme outdoor heat or cold without specialized housing. Requires low land area per bird.
+                    </p>
+                </div>
+
+                <!-- Card 3: Why This Animal? -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-inner border-l-4 border-yellow-500">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">💰 Value Proposition</h3>
+                    <p class="text-gray-600">
+                        Broilers offer the quickest return on investment in animal farming, with market weight achieved in 6-9 weeks. High global demand for white meat makes it a staple market product.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Step-by-Step Guide -->
+            <div class="mt-10 p-6 bg-green-50 rounded-lg border border-green-200">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="mr-3 text-3xl">📘</span> Step-by-Step Production Guide
+                </h2>
+                <ol class="space-y-4 text-gray-700 list-decimal pl-5">
+                    <li>**Pre-Stock Preparation:** Sanitize the entire house, lay fresh litter (shavings), and set up brooder rings with heat lamps and feeders.</li>
+                    <li>**Brooding (Day 1 - Week 2):** Maintain strict temperature control (95°F initially). Provide easy access to water and specialized starter feed. Monitor chick health frequently.</li>
+                    <li>**Growth Phase (Week 3 - 5):** Remove brooder rings. Increase feeder space. Transition to grower feed. Ensure continuous, excellent ventilation to prevent respiratory issues.</li>
+                    <li>**Finisher Phase (Week 6 - 9):** Switch to finisher feed. Reduce lighting to encourage eating and resting. Monitor weight gain to hit target market size.</li>
+                    <li>**Harvest/Processing:** Follow ethical and hygienic processing standards. Thoroughly clean and disinfect the house before the next batch arrives.</li>
+                </ol>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-12 py-8 bg-gray-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 AgriSense Project. Built by [Your Name] for College Project.</p>
+            <div class="mt-4 space-x-4 text-sm">
+                <a href="about.html" class="hover:text-primary-green transition-colors">About Us</a>
+                <a href="categories.html" class="hover:text-primary-green transition-colors">View All Guides</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
