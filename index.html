@@ -1,126 +1,553 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home - AgriSense Farming Hub</title>
-    <!-- Load Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'primary-green': '#10B981', // Emerald 500
-                        'accent-blue': '#3B82F6',   // Blue 500
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              // Using a common sans-serif font for reliable rendering
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              "primary-green": "#10B981", // Emerald 500
+              "accent-blue": "#3B82F6", // Blue 500
+              "secondary-gray": "#F9FAFB", // Gray 50
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-gray-50 antialiased">
+    <style>
+      .slide-item {
+        display: none; /* Hide all slides by default */
+      }
+      .slide-item.active {
+        display: block; /* Show the active slide */
+      }
+    </style>
+  </head>
+  <body class="bg-secondary-gray antialiased font-sans">
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <a
+            href="index.html"
+            class="flex items-center space-x-2 text-3xl font-extrabold text-primary-green transition-colors hover:text-green-700"
+          >
+            <svg
+              class="w-10 h-10"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.477 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.477-3-9s1.343-9 3-9m-9 9h.01"
+              ></path>
+            </svg>
+            <span>AgriSense</span>
+          </a>
 
-    <!-- Navigation Bar -->
-    <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo/Brand -->
-                <a href="index.html" class="flex items-center space-x-2 text-2xl font-extrabold text-primary-green transition-colors hover:text-green-700">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.477 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.477-3-9s1.343-9 3-9m-9 9h.01"></path></svg>
-                    <span>AgriSense</span>
-                </a>
-
-                <!-- Desktop Menu -->
-                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    <a href="index.html" class="text-primary-green border-b-2 border-primary-green px-3 py-2 text-sm font-medium">Home</a>
-                    <a href="categories.html" class="text-gray-500 hover:text-primary-green hover:border-b-2 hover:border-primary-green px-3 py-2 text-sm font-medium">Guides</a>
-                    <a href="about.html" class="text-gray-500 hover:text-primary-green hover:border-b-2 hover:border-primary-green px-3 py-2 text-sm font-medium">About</a>
-                </div>
-            </div>
+          <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+            <a
+              href="index.html"
+              class="text-primary-green border-b-4 border-primary-green px-3 py-2 text-base font-semibold"
+              >Home</a
+            >
+            <a
+              href="categories.html"
+              class="text-gray-600 hover:text-primary-green hover:border-b-4 hover:border-primary-green px-3 py-2 text-base font-medium transition duration-150"
+              >Guides</a
+            >
+            <a
+              href="about.html"
+              class="text-gray-600 hover:text-primary-green hover:border-b-4 hover:border-primary-green px-3 py-2 text-base font-medium transition duration-150"
+              >About</a
+            >
+          </div>
         </div>
+      </div>
     </nav>
-    
-    <!-- Main Content -->
+
     <main class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
-        
-        <!-- 1. Hero Section -->
-        <section class="py-20 md:py-32 bg-primary-green rounded-3xl shadow-2xl mb-12 relative overflow-hidden">
-            <div class="absolute inset-0 opacity-10 bg-cover bg-center" style="background-image: url('https://placehold.co/1200x500/000000/FFFFFF?text=FARM+BACKGROUND')"></div>
-            <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
-                <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight">
-                    Future-Proof Your Farming
-                </h1>
-                <p class="mt-6 text-xl text-green-200 max-w-2xl mx-auto">
-                    Comprehensive guides covering requirements, environmental suitability, and best practices for every animal farming category.
-                </p>
-                <a href="categories.html" class="mt-10 inline-block bg-white text-primary-green hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
-                    Explore Guides Now &rarr;
-                </a>
-            </div>
-        </section>
+      <section
+        class="py-20 md:py-28 bg-primary-green rounded-3xl shadow-2xl mb-16 relative overflow-hidden"
+      >
+        <div class="absolute inset-0">
+          <div id="hero-slider" class="w-full h-full">
+            <div
+              class="slide-item active absolute inset-0 opacity-30 bg-cover bg-center transition-opacity duration-1000"
+              style="
+                background-image: url('https://cdn.prod.website-files.com/61a503785b6ce52e8fbf3b6d/61b87ac386618673a0eb877c_Mockup-img-blog-31072020.png');
+              "
+            ></div>
+            <div
+              class="slide-item absolute inset-0 opacity-30 bg-cover bg-center transition-opacity duration-1000"
+              style="
+                background-image: url('https://farm.ws/wp-content/uploads/2024/11/How-Is-Livestock-Farming-Becoming-A-Sustainable-Practice_-A-Brief-Overview.webp');
+              "
+            ></div>
+            <div
+              class="slide-item absolute inset-0 opacity-30 bg-cover bg-center transition-opacity duration-1000"
+              style="
+                background-image: url('https://cdn.firstcry.com/education/2022/12/11101911/Farm-Animal-Names-In-English-For-Kids.jpg');
+              "
+            ></div>
+          </div>
+        </div>
 
-        <!-- 2. What We Cover Section (Cards) -->
+        <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
+          <p class="text-lg text-green-200 font-medium mb-3">
+            Powered by Data, Driven by Farmers
+          </p>
+          <h1
+            class="text-6xl md:text-8xl font-extrabold text-white leading-snug"
+          >
+            Future-Proof Your Farming
+          </h1>
+          <p class="mt-6 text-xl text-green-200 max-w-2xl mx-auto">
+            Comprehensive guides covering requirements, environmental
+            suitability, and best practices for every animal farming category.
+          </p>
+          <a
+            href="categories.html"
+            class="mt-10 inline-block bg-white text-primary-green hover:bg-gray-100 font-bold py-4 px-10 rounded-full shadow-xl transition duration-300 transform hover:scale-105 text-lg"
+          >
+            Explore Guides Now &rarr;
+          </a>
+        </div>
+      </section>
+
         <section class="py-12">
-            <h2 class="text-4xl font-bold text-gray-800 text-center mb-12">Focused on the Critical Questions</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card 1: What is the Requirement? -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-accent-blue transition duration-300 hover:shadow-xl">
-                    <div class="text-4xl text-accent-blue mb-3">❓</div>
-                    <h3 class="text-2xl font-semibold text-gray-800">What is Required?</h3>
-                    <p class="mt-2 text-gray-600">Detailed breakdown of feed, housing, equipment, and labor requirements specific to the animal.</p>
-                </div>
-                <!-- Card 2: Where to Farm? -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-primary-green transition duration-300 hover:shadow-xl">
-                    <div class="text-4xl text-primary-green mb-3">🌍</div>
-                    <h3 class="text-2xl font-semibold text-gray-800">Where to Farm?</h3>
-                    <p class="mt-2 text-gray-600">Analysis of environmental suitability: climate zones (Arid, Tropical, Temperate), land type, and water access.</p>
-                </div>
-                <!-- Card 3: Why This Animal? -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-yellow-500 transition duration-300 hover:shadow-xl">
-                    <div class="text-4xl text-yellow-600 mb-3">🌱</div>
-                    <h3 class="text-2xl font-semibold text-gray-800">Why This Animal?</h3>
-                    <p class="mt-2 text-gray-600">Understanding market potential, resilience, and sustainability benefits for each choice.</p>
-                </div>
+        <h2 class="text-4xl font-bold text-gray-800 text-center mb-16">
+          Explore Comprehensive Farming Categories
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <a
+            href="category-cattle.html"
+            class="block group bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden transform hover:-translate-y-1"
+          >
+            <img
+              src="https://lh3.googleusercontent.com/rd-gg-dl/ABS2GSkQKq1bKN7E27WankbRhfqavZa1DCqTO6tnKzBWOlnU2XAQs8yawmaTMijwbyBwQ6606LHm5kUngJ9PHtWItfUYhI3KS8u_QOTEuhp1ft31L-ZVO_V1bgnpVknMgDlFgzDosRxC956bv0HGhPyGYtwHStoJY7xmgb32nJwfB5f5INBkKqCnvAijjPK-2cE_uZ6uQOBc3s3SZGdQg0rol0nFlhlHKVOupMhjHICc0_pt6uTsCJA5Zq2lSuBtdpqWyMVZ8-opYCN7Lv4rNTBaNzC-sbRxMcK8i64219Xak0zG7BfJiIEYFHcIyniqHmqkJ96zAG0FRyKM5G2QoGIz4jTJ-aGEFmTnZBbIcSQUoDOYGd7lar6EHLnAhtLZbVTzKCl7m2Tc3ppnBdIR66ek9iFxH64V6yrIkz-T6r9SRCQbLDGmcwYTwVX-9kLStpe4wlUJjnBQJDkrvwSkz33G7AL2tSCqohanHqrFS5CSBTfEZq0WmIIVhD_lXLzNeJOocOp4wKJGOfZF8bq2tUBEEst1JEwP51rq6_ORH7vYrBpXjk6VNoJXBkkMS6CiFMjtjR82_0gP5K-zatEySxXPkuC5eygWj5g7oYfhYUz7Puo4U3et38nGMsv_tkRYd1d0VNXUYsH4LUOJwYZ2HWUUqJKyL6vTLYW9PUu_9eDEl2zsoAulKnnOG9rtc0Hyyy-jleXwhQzvtvHYuwdeXAoNPyyXe0WTk17Kupnk5AOmpthaskO-2up2UwevmtGTYlIffzc1itQUZJndE-1YEUEOKsNmALa4cDZrOSX00D3Ndipjc-KrUUQF1GN71eDxziHLQgfnxOwKWsyh6tc1Y0tejFxFPcOsPq7wxJqbMegyqLGZzs7tB-yOjhDvo0HKXeCNsU-jreke6w2Ic_YS2M944z5tgfC9ybBSY_DmZSlDke2omWduslT2VcskBgSotKsx7DjkwgNubKFTvGDvHT1fklotuCA2Z738XOVsij-G4ORwUKQ6k41ND8ZW7CCRkI0RI4Si74ObXerYZcUKUr1LIF1dN4JpHCqoG5ycXxv4hr2OQqdnWfk8CbiEbX8wbaMACvjd6hSRGV5gFUoPkUZKpfVIlYwO9x1qajJJOv8XC7SxDfroqaYRPxpMx6XZu_sjdi3BKgiQg3t9rL9NcPgkMMvJlgQ9sUXPPAhDJ-VPx1-xCl8Dtue6kSM=s1024-rj"
+              alt="Cattle"
+              class="w-full h-32 object-cover group-hover:opacity-80 transition duration-300"
+            />
+            <div class="p-4 text-center">
+              <h3
+                class="text-xl font-bold text-gray-800 group-hover:text-accent-blue"
+              >
+                Cattle Farming
+              </h3>
+              <p class="text-sm text-gray-500 mt-1">Beef & Dairy production.</p>
             </div>
-        </section>
-        
-        <!-- 3. Featured Guide Section -->
-        <section class="mt-16 bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
-            <div class="flex flex-col md:flex-row items-center gap-8">
-                <div class="md:w-1/2">
-                    <span class="text-sm font-semibold text-primary-green uppercase tracking-wider">Featured Guide</span>
-                    <h2 class="text-3xl font-bold text-gray-800 mt-2">The Resilience of Goat Farming in Arid Zones</h2>
-                    <p class="mt-4 text-lg text-gray-600">
-                        Goats are often the best choice for resource-scarce environments. Our guide details
-                        the specific management techniques, including browse utilization, water conservation,
-                        and optimal local breeds for dry climates.
-                    </p>
-                    <a href="goat-detail.html" class="mt-6 inline-block bg-accent-blue text-white hover:bg-blue-600 font-semibold py-3 px-6 rounded-full transition duration-300">
-                        Read Full Goat Guide &rarr;
-                    </a>
-                </div>
-                <div class="md:w-1/2">
-                    <img src="https://placehold.co/400x250/10B981/FFFFFF?text=GOAT+FARMING" alt="Goat Farming" class="rounded-xl shadow-lg w-full h-auto object-cover">
-                </div>
+          </a>
+          <a
+            href="category-poultry.html"
+            class="block group bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden transform hover:-translate-y-1"
+          >
+            <img
+              src="https://lh3.googleusercontent.com/rd-gg-dl/ABS2GSlVFVuN1-DmWS3SeLtTyWVwzpjtXHSTNSZRWTWQ7nTuh8xc9Utwhkg59_oMZcUteQHd_i-Fjt2KK4GVnyJWDBnuNvCZsjjxwgoSLCeNvURCh4oP1rzhO66Bemv0eXMz4anfD8FBglEEPP6A8XgLb3MYibBhg1_7spnYeJe4tD0SayzOH5xJTjlvCGDInycK7nWybyqtAjUYbaqBGHQneWb_QXi5qbJJZiI5US-s-ZdchK3Jvx817cIokHj6HC-p3zeuPt3aTP993XcQVMtT5ZKNX7lWpl--kBZ-ZFYW9OOj3GMTJ7G7LiePGutdRqvHe7SPPr65iF8W-HrEKv_hqUywjav4lU0HqqtFcvKMD2GwhBNR7VlfETk8sgMYPL5D-AicNRpFkq1THFD5yKhykAhci-M-H3eHus5I_9sqBllrHUYuHKe1YB4AHbvG8tmM3A1DUJdzLYxLCV9PtqHPVLzfffDuxwlknHXa08O6Xu69bGPw_qgvjyQ2qMlT_n501MJXNkdkCaaCuUpA4dImmSYJAsatj1lYEm30dbVqHyL32kM5xvq6IVp1VUTck-A6jBV-1Vd604AJ4VF1zkCam8xynomCDd2Bi-U2SGil0eP6cQhRMUSssv4isCjap1wQOLVcFNIdEETfZD-h0t-zp5tQdqCrxYnkFhlB6sl5XKsMyBwT3jzcrJxxv1oBhO5GRHQ-Pl9DMbjMdd6FHM16y9dw9J_h-r0aakwRP4_C07zi4llAh3aX32QbiLy-qTeoaQ-pFxIwHs4uoEYRijRqXNuOAMmgpMF_S9jcrRaU7z-XI5Z-FBrUbSABJ3Or7MQ2UnUkbLJpsNB7mnw4HkzfHEjIdbPGjmp36M1nuSnseMSXf6znlx2MqbFKHCNpW8SABTjisa_dzDcKcPE6Zj_SBiYuerSP4iGItcF5EcU5y6QSGvNA-Y03CLGrXZMOEaXU9z8_SNxfGwgMJpqYvXuOV9iW79x7YDS9Oq8YZDl98t2Bz8Vbf5oIwuIY3hzZp2ltvopt5HziutHK4smpVJ99rFza4k4xHM5jm_rETa79XaIhPyPFE3YAgkFpoiFkX5AvP45UZsc8_H6sqHM3WV6JiKxGtnkROsVcB_GFeBh4u1rVo8M6-kInV_khSyBUYm1WaRiRU4TkQPC9R1F1CO9DBhK9tOwjAlAkCOOn75WW9LwmzaszwFaz2c0=s1024-rj"
+              alt="Poultry"
+              class="w-full h-32 object-cover group-hover:opacity-80 transition duration-300"
+            />
+            <div class="p-4 text-center">
+              <h3
+                class="text-xl font-bold text-gray-800 group-hover:text-primary-green"
+              >
+                Poultry Farming
+              </h3>
+              <p class="text-sm text-gray-500 mt-1">
+                Chicken, Duck, & Turkeys.
+              </p>
             </div>
-        </section>
+          </a>
+          <a
+            href="category-small-ruminants.html"
+            class="block group bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden transform hover:-translate-y-1"
+          >
+            <img
+              src="https://lh3.googleusercontent.com/rd-gg-dl/ABS2GSlB74yu_NrU0zj8_CbPzEf_40VUcJGB3TNLgnDuD1PcU4Y6C-MNyYZiRi6fhV8kQvQ1oEYFM75Z_p3KP6Kcb23OTyYveqOdaPYPkNZw0NH_fOZAHM4CCQDmUqMVMjRCLQdsf6jO4vLJexYHkRXVGRFfCRBducxkKThdLSGto0j01xeHFufe7FIAwAJU4mLguHgX9GX1zACmDjv1uUp-Ud9JmxOT3tFP9uCzazdOw98P9jlIJ7a9c5U-IHmDqpWjlfGoRxQMZIN7oEUTp2Nuf-p3QOEtl4NSKUQV4y7cZj2rO2V_98n7lOUJkzQ4lACxZmNDRRagBhsmmsWD06bJJYhIuw_J87l4DnXJyDxI2rUS-qqiv077zKOrFkcDOLqVeYN4NmYxpOSXf5u1oY7uokFnXIwhjgIq1kTSV5GETyb2D3cggffMy2rkJJcsH5xm_v-h9yAfppkZMTL2XWDvmQ6pgpWKmFcFvZBSi6oL1yqdXZU7-WLnlekvqHjA32oEn9sCvM-BaIkowVKUokKhIq7-QDtrNQmv9aqWMKt1PCCS_8CL74dSrkNhTL5EKbYnhU6tmXbfSTO_70XIXxSNxLiYc6bTYYNAIxrvRIkmGY5fKuFi7mdVHuZT017B3xQ779-ubzYHYrfDNLaWeRj0Pazsv1gKOyV5vcMBkNvt_SMVHt06C4Y3eNZlSf7NTqNErZumgJsGj4kfZmLJGE6GiNl0ZA6YueAOpNb5lp5VoNltyAEli2ZmF18jWHRewy-CGpLSHHU66bL0ESnq2haMzJvidBUnCF2QjVnL7E1HIfIjymPBj1E9Q8eh82TxHN4Pk6QRsZtXKqILN3VfC8mCnilPIzN-7qD42WxKb9fv28_cNA2deHNETG-jaiRVKAHLy7fE6i2fxaO8y7GZCT9lTBkDaPdY7iFXjaAI8AwEj9Vm9DO22YKe8VyHd2ESSjFNJrjA-2oVAvqq57xk_2iAxNUj965875HR7nKtwSBCbIajRYImEakmc5XR8pVCSy9Ez2kPA_0RTUcnl0fnsoO1Bvbhqv8gw9peML1oWLJ2UXdXDXh0x_QnPQknuCGth-41oteI_kto8kCTM5kVlttetyVrDMP6rUJ9MulCJP3x3xdWnrI28JDQgLFsm8GTVh0-TKb7rFAzQWn-kVmnLUPoNZtlAIYCOc770Udfx4m-tUaKeOFgLInqIXA=s1024-rj"
+              alt="Goats and Sheep"
+              class="w-full h-32 object-cover group-hover:opacity-80 transition duration-300"
+            />
+            <div class="p-4 text-center">
+              <h3
+                class="text-xl font-bold text-gray-800 group-hover:text-yellow-600"
+              >
+                Small Ruminants
+              </h3>
+              <p class="text-sm text-gray-500 mt-1">Goat & Sheep management.</p>
+            </div>
+          </a>
+          <a
+            href="category-aquaculture.html"
+            class="block group bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden transform hover:-translate-y-1"
+          >
+            <img
+              src="https://lh3.googleusercontent.com/rd-gg-dl/ABS2GSkeCMAMCxQDtM5WcB0FCOnZLrAYvWH0qDNwbI5HHfAYyM2jESAerJGA8WLFWP6KAU58UXuIW39crZrofajpYxOo_of2fs899_XQT8PfDJuYwfekg5zHoCONmjyt3MR1Haw22CzwbTRNG-to0q-GVlY-gkD9_xt_lBFKFHodDJHgKR2fs6mcBtL-wRDW-nBCDBXt3FhFwfl5K59l_QSfE-XZwJh9EZ8jLHBWZW9qJc4UDUYSB0NBzS6VoUQS4eRFFDFHOOQKS-QMsEIt-xMDsdBd1k4GeTT37WJ1hI8mam3HeVTa8DCzqbOCLDCVdPf5tKIwYp3GhekIkWOhmUJvBlZNSCUwERhjYmKGaA7ttqp44hS1gcm8vUF8ZlhftN0KRf-O-VAXKk1YEh_7L23bFfx04lTmV7zCJpOvZxMADxp7Zh45dbSiap7Fjh7n4j3r9-C8GcXHffdkVRx6oIlEW22-1hPQ8lARNOel8AGRzbYSmEIpIxOlw22ECEMpRhSw9A8vpCmmUthDY4saCvSRheUlIxQ6EBuhZzYRT-jeStU32oTE1j2SH5TXLoHGWKyz52i4E2tvRJxJH-NCEKZyOL7jbkxiKv5xiFBqmW1y3OFq9l-Fw_aZTmHIVRjJcF2f-L57pVbVx9iQK6NK3ezSNXZaUE-P01_8gXdKW-JNXU8MXhpcy_eHPg8i03tBib_VFzCKd_aefFVHdxo5dmDyxZJ_A6V_-09qoLcLBhhHFN8sgtfnZ5jfOuzRkOzj1Rie1CLd5s4OXixLxTVKLxQdszxT7kPf5G-U4UE1zeUrEvqb24htVB3GU4Py-kK1pDTe3nRF2Atv2w00ClNlEjnABdiJcDuuqgt_4C63-HUppRaZw6j89KPy6DESA7tNtEUU_-qVbrGckzDY4EUQ816CzKzB2JzVo1YRWbYY57CHmi3ELZ1C6_jclWFChTDD9WPBK16nV9BUiq2CLo4PlfSxPY_IIlE8NuLAzIxSwV6v397CL9WIKBTGlGIUEFjay70UTq_pcBm8fvqQyZZw_kMQXY1QR_40IMOnItZXnzjXfEAIliY8EqG0D8gxRe7lScee-FD6abZKgS9_7h7t0sw-JAZJdrQohlPhRplvHJK4JlEYhfBEeFHuvrF021Z-Q_vNWgHlxy-U7be-OziVg2PZCREHU-IeCC4RcWyAS1W1dORgepZ-p5jwQg=s1024-rj"
+              alt="Aquaculture"
+              class="w-full h-32 object-cover group-hover:opacity-80 transition duration-300"
+            />
+            <div class="p-4 text-center">
+              <h3
+                class="text-xl font-bold text-gray-800 group-hover:text-cyan-500"
+              >
+                Aquaculture
+              </h3>
+              <p class="text-sm text-gray-500 mt-1">
+                Fish and Shellfish farming.
+              </p>
+            </div>
+          </a>
+        </div>
+        <div class="text-center mt-12">
+          <a
+            href="categories.html"
+            class="inline-flex items-center text-lg font-semibold text-accent-blue hover:text-blue-700 transition duration-300"
+          >
+            View All 12+ Guides
+            <svg
+              class="ml-2 w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </section>
 
+      <section
+        class="mt-20 bg-white p-10 rounded-3xl shadow-2xl border border-gray-100"
+      >
+        <div class="flex flex-col md:flex-row items-center gap-10">
+          <div class="md:w-1/2 order-2 md:order-1">
+            <span
+              class="text-sm font-semibold text-primary-green uppercase tracking-wider"
+              >Featured Guide</span
+            >
+            <h2 class="text-4xl font-bold text-gray-800 mt-2">
+              The Resilience of Goat Farming in Arid Zones
+            </h2>
+            <p class="mt-5 text-lg text-gray-600">
+              Goats are often the best choice for resource-scarce environments.
+              Our guide details the specific management techniques, including
+              browse utilization, water conservation, and optimal local breeds
+              for dry climates, ensuring maximum profitability.
+            </p>
+            <a
+              href="goat-detail.html"
+              class="mt-8 inline-block bg-accent-blue text-white hover:bg-blue-600 font-semibold py-3 px-8 rounded-full transition duration-300 text-base shadow-md"
+            >
+              Read Full Goat Guide &rarr;
+            </a>
+          </div>
+          <div class="md:w-1/2 order-1 md:order-2">
+            <img
+              src="https://lh3.googleusercontent.com/rd-gg-dl/ABS2GSnhmYpT-rB8VamNHus2O22-FSQS-CD4EUWk0mlN2k43OHVs0gs7T0hVZBzNkDiSbLTSr9HxVoLWUjYFeZGxFN610wM0gTjT_3N2vRKv8ttAO3nhB8_NfHpYxj48LoW0z1BCV181K4LE91yPh-pvIfUZ2QHigGES3AzgsLdF1MgDJgdPe8Yy0H_Zz6g3vXpjt_dir2aYTpjPaEQoaJb_6d8Ng0nWKBcA3rUQaHWWi30h4DQRqwhpruMSLZn32076bmlhi--CKlRcFQ08Ev92uTolDHTBpRe0y4Ul4mG1XG60oFzxhMbQatzoLHzARQRDVr_XK9F-OtG4PrU-2L5MrNlrjUr0QGdtKUYnC4-vBaz2oCgE9MllFNcYdLvrIvOIUwVYIzMckxdzBWiHdSf6s_7gnO2J2KFJuWBxLyfQEDaYTiMb-aI4-da5rCqkLepZFai4QxYmu1wsRhUNp-ocTuGmEwNcgPgP0pY_eXDmYJsotMLLRgMp1LQ2iqYSt5xry5WIOucyv_9hzO8vDEQh4tDTeECJTS2_aUp8GCTCt5THTy_HxfxeZlKNdNUK5z2WVMyPKz5J_0x9w5hOlrWw56nL4HPs8AtpMfHy0F2CTcwv-dcvZXY6lMFROwD0q54xa4txL3y4vsRjkhIkFUAJXVeuYhlnNknEQkaERlu77qqDhwsEkIj2fdbfKveGrizGsDQYc1967IBSBaZFg0416-aIXYSYa0C9iSP5aUIi-fMbPNw_u7ptoK6E0_401AexGgMsHX9ec_kh9IuXodwTvE6Q6zrhwwtKQ5aDP4eIcfwvKb3he_T3M9hXTdYjvLL5lvcZOibj6fXOsP-pf9oWO94iSRvySZsPw5P1nBgJB1Wo5KFf9J4B8EgTOP_OuVmdNHbCPtp0NNVHrSihy4Pn0bKNJtW447__H-kTQtq8YF-jrpxNun_OIFYEadlag-8i3Py4PV9hciju9Kg2ne1qIZ2zSp3ANixoBe2s0SVsqXrXpMFnZJyfID4BaxLjQqFfvyd2Rq4hjIkaP_7G-fT-bm43t5CdFcS0QWBPhWFbIOHn7ldON0RgZPJ395kqsg-QR4bIhz61p2vEHh3JYq3Wf9bC29YPQdB07GkkKkH-adeVHfZWOs_TdoF6BEnoZisDWPd3H4-SMO1KJnRFtQ_LdzF85PHLUxVQZrxXDCh-QZwxe5eKD7zv_Q=s1024-rj"
+              alt="Goat Farming"
+              class="rounded-2xl shadow-xl w-full h-[350px] object-cover border-4 border-primary-green/20"
+            />
+          </div>
+        </div>
+      </section>    
+
+      <section class="py-20">
+        <h2 class="text-4xl font-bold text-gray-800 text-center mb-16">
+          Focused on the Critical Questions
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div
+            class="bg-white p-8 rounded-2xl shadow-xl border-t-8 border-accent-blue transition duration-300 hover:shadow-2xl hover:translate-y-[-5px]"
+          >
+            <div class="text-5xl text-accent-blue mb-4">⚙️</div>
+            <h3 class="text-2xl font-semibold text-gray-900">
+              What is Required?
+            </h3>
+            <p class="mt-3 text-gray-600">
+              Detailed breakdown of **feed, housing, equipment, and labor**
+              requirements specific to the animal, tailored to scale.
+            </p>
+          </div>
+          <div
+            class="bg-white p-8 rounded-2xl shadow-xl border-t-8 border-primary-green transition duration-300 hover:shadow-2xl hover:translate-y-[-5px]"
+          >
+            <div class="text-5xl text-primary-green mb-4">🌍</div>
+            <h3 class="text-2xl font-semibold text-gray-900">Where to Farm?</h3>
+            <p class="mt-3 text-gray-600">
+              Analysis of **environmental suitability**: climate zones (Arid,
+              Tropical, Temperate), land type, and water access logistics.
+            </p>
+          </div>
+          <div
+            class="bg-white p-8 rounded-2xl shadow-xl border-t-8 border-yellow-500 transition duration-300 hover:shadow-2xl hover:translate-y-[-5px]"
+          >
+            <div class="text-5xl text-yellow-600 mb-4">📈</div>
+            <h3 class="text-2xl font-semibold text-gray-900">
+              Why This Animal?
+            </h3>
+            <p class="mt-3 text-gray-600">
+              Understanding **market potential**, disease resilience, and
+              long-term sustainability benefits for each choice.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="my-20 bg-accent-blue/95 rounded-3xl p-10 md:p-16 text-center shadow-2xl"
+      >
+        <h2 class="text-4xl font-extrabold text-white mb-4">
+          Ready to Grow Your Farm?
+        </h2>
+        <p class="text-xl text-blue-200 mb-8 max-w-3xl mx-auto">
+          Stop guessing and start farming with confidence. Access our full
+          library of research-backed guides today.
+        </p>
+        <div class="space-x-4">
+          <a
+            href="signup.html"
+            class="inline-block bg-white text-accent-blue hover:bg-gray-100 font-bold py-4 px-10 rounded-full shadow-lg transition duration-300 text-lg"
+          >
+            Get Started Free
+          </a>
+          <a
+            href="contact.html"
+            class="inline-block border-2 border-white text-white hover:bg-white hover:text-accent-blue font-semibold py-4 px-10 rounded-full transition duration-300 text-lg"
+          >
+            Talk to an Expert
+          </a>
+        </div>
+      </section>
+
+      <section class="py-12">
+        <h2 class="text-4xl font-bold text-gray-800 text-center mb-12">
+          Frequently Asked Questions
+        </h2>
+        <div class="max-w-4xl mx-auto space-y-4">
+          <div class="bg-white rounded-xl shadow-lg p-6">
+            <h3
+              class="text-xl font-semibold text-gray-800 cursor-pointer flex justify-between items-center"
+            >
+              What is the main difference between an Arid and Tropical guide?
+              <span class="text-2xl text-primary-green">+</span>
+            </h3>
+            <p class="mt-2 text-gray-600 hidden">
+              Arid guides focus on **water efficiency, drought-tolerant breeds,
+              and temperature management** during extreme heat. Tropical guides
+              prioritize **disease and parasite control** due to humidity, and
+              housing to promote air flow.
+            </p>
+          </div>
+          <div class="bg-white rounded-xl shadow-lg p-6">
+            <h3
+              class="text-xl font-semibold text-gray-800 cursor-pointer flex justify-between items-center"
+            >
+              Are these guides suitable for both small-scale and commercial
+              farms?
+              <span class="text-2xl text-primary-green">+</span>
+            </h3>
+            <p class="mt-2 text-gray-600 hidden">
+              Yes, our guides are structured to include sections on **minimal
+              resource requirements** for beginners and **scalable
+              infrastructure designs** for commercial operations.
+            </p>
+          </div>
+          <div class="bg-white rounded-xl shadow-lg p-6">
+            <h3
+              class="text-xl font-semibold text-gray-800 cursor-pointer flex justify-between items-center"
+            >
+              How often are the best practices updated?
+              <span class="text-2xl text-primary-green">+</span>
+            </h3>
+            <p class="mt-2 text-gray-600 hidden">
+              Our content team updates key guides **quarterly** or immediately
+              following significant agricultural regulatory changes or
+              scientific breakthroughs in animal husbandry.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="mt-20 py-16 bg-white rounded-3xl shadow-2xl border border-gray-100"
+      >
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-4xl font-bold text-gray-800 text-center mb-4">
+            Send Us Your Feedback
+          </h2>
+          <p class="text-center text-lg text-gray-600 mb-10">
+            We'd love to hear your suggestions or farming success stories!
+          </p>
+          <form action="#" class="space-y-6">
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700"
+                >Your Name</label
+              >
+              <input
+                type="text"
+                name="name"
+                id="name"
+                autocomplete="name"
+                placeholder="Narendra Dhangar"
+                class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-3 focus:ring-primary-green focus:border-primary-green"
+              />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700"
+                >Email Address</label
+              >
+              <input
+                type="email"
+                name="email"
+                id="email"
+                autocomplete="email"
+                placeholder="narendra.dhangar@example.com"
+                class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-3 focus:ring-primary-green focus:border-primary-green"
+              />
+            </div>
+            <div>
+              <label
+                for="message"
+                class="block text-sm font-medium text-gray-700"
+                >Your Feedback/Message</label
+              >
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="Tell us how we can improve AgriSense..."
+                class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-3 focus:ring-primary-green focus:border-primary-green"
+              ></textarea>
+            </div>
+            <div class="text-center">
+              <button
+                type="submit"
+                class="w-full md:w-auto inline-flex justify-center py-3 px-8 border border-transparent shadow-lg text-base font-bold rounded-full text-white bg-primary-green hover:bg-green-700 transition duration-300 transform hover:scale-[1.02]"
+              >
+                Submit Feedback
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="mt-12 py-8 bg-gray-800 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p>&copy; 2025 AgriSense Project. Built by SDE Aspirant.</p>
-            <div class="mt-4 space-x-4 text-sm">
-                <a href="about.html" class="hover:text-primary-green transition-colors">About Us</a>
-                <a href="categories.html" class="hover:text-primary-green transition-colors">View All Guides</a>
-            </div>
+    <footer class="mt-20 py-10 bg-gray-900 text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="mb-6">
+          <a
+            href="index.html"
+            class="flex justify-center items-center space-x-2 text-3xl font-extrabold text-primary-green transition-colors hover:text-green-500"
+          >
+            <svg
+              class="w-8 h-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.477 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.477-3-9s1.343-9 3-9m-9 9h.01"
+              ></path>
+            </svg>
+            <span>AgriSense</span>
+          </a>
         </div>
+
+        <p class="text-gray-400">
+          &copy; 2025 AgriSense Project. All rights reserved.
+        </p>
+        <p class="text-gray-400 mt-1">
+          Built with passion by **Narendra Dhangar** (SDE Aspirant).
+        </p>
+
+        <div class="mt-6 space-x-6 text-sm">
+          <a
+            href="about.html"
+            class="hover:text-primary-green transition-colors font-medium"
+            >About Us</a
+          >
+          <a
+            href="categories.html"
+            class="hover:text-primary-green transition-colors font-medium"
+            >View All Guides</a
+          >
+          <a
+            href="contact.html"
+            class="hover:text-primary-green transition-colors font-medium"
+            >Contact</a
+          >
+          <a
+            href="#"
+            class="hover:text-primary-green transition-colors font-medium"
+            >Privacy Policy</a
+          >
+        </div>
+      </div>
     </footer>
 
-</body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const slides = document.querySelectorAll(".slide-item");
+        let currentSlide = 0;
+
+        // Function to show the current slide
+        function showSlide(index) {
+          slides.forEach((slide, i) => {
+            slide.classList.remove("active");
+            slide.style.opacity = "0"; // For smooth transition
+            if (i === index) {
+              slide.classList.add("active");
+              slide.style.opacity = "0.15";
+            }
+          });
+        }
+
+        // Function to advance the slide
+        function nextSlide() {
+          currentSlide = (currentSlide + 1) % slides.length;
+          showSlide(currentSlide);
+        }
+
+        // Automatically advance slides every 5 seconds (5000 milliseconds)
+        setInterval(nextSlide, 5000);
+
+        // Initial call to set the first slide correctly
+        showSlide(currentSlide);
+
+        // Simple FAQ toggle for demonstration
+        document.querySelectorAll(".rounded-xl h3").forEach((header) => {
+          header.addEventListener("click", () => {
+            const content = header.nextElementSibling;
+            if (content.classList.contains("hidden")) {
+              content.classList.remove("hidden");
+              header.querySelector("span").textContent = "−";
+            } else {
+              content.classList.add("hidden");
+              header.querySelector("span").textContent = "+";
+            }
+          });
+        });
+      });
+    </script>
+  </body>
 </html>
